@@ -32,3 +32,41 @@ nest new <project-name>
 - **controllers**: array of controllers to be instantiated within the module
 - **exports**: array of providers to export to other modules
 - **imports**: list of modules required by this module, any exported provider by these modules will now be available in our module via dependency injection
+
+- You can create a new module with `next g module <module-name>`
+
+## Controllers
+
+- handle incoming **requests** and returning **responses** to the client
+- bound to a specific path, for example `/tasks`
+- contain **handlers**, which handle **endpoints** and **request methods** (GET, POST, DELETE, etc)
+- can take advantage of **dependency injection** to consume providers within the same module
+
+### Controller definition
+
+- defined by decorating a class with the **@Controller** decorator
+- the decorator accepts a string, which is the **path** to be handled by the controller
+
+```typescript
+@Controller("/tasks")
+export class TaskController {}
+```
+
+### Handler definition
+
+- methods within the controller class, decorated with decorators such as **@Get**, **@Post**, etc
+
+```typescript
+@Controller("/tasks")
+export class TaskController {
+  @Get()
+  getAllTasks() {
+    return;
+  }
+
+  @Post()
+  createTask() {
+    return;
+  }
+}
+```
